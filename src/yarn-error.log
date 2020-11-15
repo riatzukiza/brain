@@ -1,0 +1,36 @@
+Arguments: 
+  /home/aaronb/.nvm/versions/node/v14.6.0/bin/node /usr/bin/yarn init
+
+PATH: 
+  /home/aaronb/.rbenv/shims:/home/aaronb/Android/Sdk/tools:/home/aaronb/Android/Sdk/platform-tools:/home/aaronb/.nvm/versions/node/v14.6.0/bin:/home/aaronb/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/usr/lib/emacs/27.1/x86_64-pc-linux-gnu:/home/aaronb/.rbenv/shims:/home/aaronb/Android/Sdk/tools:/home/aaronb/Android/Sdk/platform-tools:/home/aaronb/.nvm/versions/node/v14.6.0/bin:/opt/cuda/bin:/home/aaronb/.yarn/bin:/home/aaronb/.rbenv/bin:/opt/cuda/bin:/home/aaronb/.yarn/bin:/home/aaronb/.rbenv/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.6.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:137009:13)
+      at Interface.emit (events.js:314:20)
+      at Interface._ttyWrite (readline.js:875:16)
+      at ReadStream.onkeypress (readline.js:213:10)
+      at ReadStream.emit (events.js:314:20)
+      at emitKeys (internal/readline/utils.js:335:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1144:36)
+      at ReadStream.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:303:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

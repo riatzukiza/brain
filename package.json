@@ -1,0 +1,12 @@
+{
+  "name": "brain",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Aaron Beavers <foamy125@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^2.7.0",
+    "discord.js": "^12.4.1",
+    "mathjs": "^8.0.1"
+  }
+}
