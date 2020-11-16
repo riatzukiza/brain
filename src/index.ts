@@ -17,11 +17,11 @@ const INITIAL_TRAINING_INTERVAL = 600000
 let trainingInterval = INITIAL_TRAINING_INTERVAL;
 let messages = []
 
-const howFast = (messages,framStart) =>
+const howFast = (messages,frameStart) =>
     math.mean(...messages.map((msg,i,a) =>
         i > 0
         ? msg.createdAt - a[i -1]
-        : msg.createdAt - frameStartTime));
+        : msg.createdAt - frameStart));
 
 const processMessages = (msg:Discord.Message) => ({
     author:msg.author.id,
