@@ -1,21 +1,19 @@
-import {create, fit, generate} from './lstm'
-import * as Discord from 'discord.js'
+// import {create, fit, generate} from './lstm'
 
-import {TextData} from './text-data'
-import math from 'mathjs'
+// import {TextData} from './text-data'
+// import math from 'mathjs'
 
-// store in mongo db
-const client = new Discord.Client();
+// // store in mongo db
+// const client = new Discord.Client();
 
-const model = create();
+// const model = create();
 
 
-const SAMPLE_LENGTH = 512;
-const SAMPLE_STEP = SAMPLE_LENGTH;
-const INITIAL_TRAINING_INTERVAL = 600000
+// const SAMPLE_LENGTH = 512;
+// const SAMPLE_STEP = SAMPLE_LENGTH;
+// const INITIAL_TRAINING_INTERVAL = 600000
 
-let trainingInterval = INITIAL_TRAINING_INTERVAL;
-let messages = []
+// let trainingInterval = INITIAL_TRAINING_INTERVAL;
 
 const howFast = (messages,frameStart) =>
     math.mean(...messages.map((msg,i,a) =>
@@ -23,60 +21,22 @@ const howFast = (messages,frameStart) =>
         ? msg.createdAt - a[i -1]
         : msg.createdAt - frameStart));
 
-const processMessages = (msg:Discord.Message) => ({
-    author:msg.author.id,
-    content:msg.content,
-    channel:msg.channel.id,
-    createdAt:msg.createdAt
-})
 
-const train = async () => {
-    try {
-        if(messages.length > 0) {
-            const meanTimeBetweenMessages = howFast(messages,trainFrameStartTime)
-            const messageData = messages.map(processMessages)
-            const str = JSON.stringify(messageData);
-            const data = new TextData(
-                `${messages[0].id}-${messages[messages.length - 1].id}`,
-                str,
-                SAMPLE_LENGTH,
-                SAMPLE_STEP
-            )
+import DiscordService from "./services/discord";
+import MongooseService from './services/mongoose'
 
-            messages = [];
+(async () => {
 
-            await fit(model,{data});
-            trainFrameStartTime = Date.now()
-            return setTimeout(train,trainingInterval = meanTimeBetweenMessages * messages.length * 1000)
-        }
-        setTimeout(train,trainingInterval = trainingInterval * 1.2)
-    } catch(err) {
-        messages = []
-    }
-};
-let trainFrameStartTime = Date.now()
-setTimeout(train,trainingInterval)
+    require('dotenv').config()
 
-const talk = () => {
-    let text = generate(model);
-    try {
-        let data = JSON.parse(text)
-    } catch(err) {
-    }
-}
+    const Duck = new DiscordService()
+    const Timmy = new DiscordService()
 
-let talkFrameStartTime = Date.now();
+    MongooseService.start({
+        url:process.env.MONGO_DB_URL
+    });
 
+    await Duck.start({api_key:process.env.DUCK_DISCORD_KEY});
+    await Timmy.start({api_key:process.env.TIMMY_DISCORD_KEY})
+})()
 
-
-client.on('message', async (msg:Discord.Message) => {
-
-    let response = generate(model)
-});
-
-
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-});
-
-client.login('NDQ5Mjc5NTcwNDQ1NzI5Nzkz.WwcGNA.UIGEHLffSczknflhkdzXrTZrjwo');
