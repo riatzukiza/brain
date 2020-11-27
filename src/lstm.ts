@@ -25,9 +25,6 @@ const TEXT_DATA = (new TextData(
 
 // Avoid overwriting the original input.
 
-
-
-
 // const encodeDataSet = (
 //     chars:string[],
 //     charSetSize = CHAR_SET_SIZE
@@ -38,9 +35,6 @@ const TEXT_DATA = (new TextData(
 //     ),
 //     charSetSize
 // );
-
-
-
 export function create() {
     const model = tf.sequential();
     const lstm1 = tf.layers.lstm({
@@ -66,7 +60,7 @@ export function create() {
     return model
 }
 
-export async function fit(model:tf.Model, {
+export async function fit(model:tf.Sequential, {
     epochs = NUM_ERA,
     batchSize = BATCH_SIZE,
     examplesPerEpoch = EXAMPLES_PER_EPOC,

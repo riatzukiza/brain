@@ -1,6 +1,6 @@
 import * as Discord from 'discord.js'
-export const client = new Discord.Client();
 
+import {DiscordMessage} from '../models'
 
 export default class DiscordService {
     public client : Discord.Client
@@ -9,12 +9,23 @@ export default class DiscordService {
     }
     start({api_key}) {
         this.client.on('message', async (msg:Discord.Message) => {
+            let channel, guild, author, content;
             if(msg.channel.type === 'text') {
-                console.log('channel',msg.channel.name)
+                channel = msg.channel.name
             }
-            console.log('guild',msg.guild.name)
-            console.log('author',msg.author.username)
-            console.log('content',msg.content)
+            [guild,author,content] = [
+                msg.guild.name,
+                msg.author.username,
+                msg.content
+            ]
+
+            const messageRecord = new DiscordMessage({
+                channel,
+                guild,
+                author,
+                content
+            });
+            return messageRecord.save();
         });
 
 

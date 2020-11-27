@@ -18,15 +18,19 @@
 // let talkFrameStartTime = Date.now();
 
 
-import  {DiscordService} from "./services/discord";
-
-
+import DiscordService from "./services/discord";
+import MongooseService from './services/mongoose'
 
 (async () => {
 
     require('dotenv').config()
+
     const Duck = new DiscordService()
     const Timmy = new DiscordService()
+
+    MongooseService.start({
+        url:process.env.MONGO_DB_URL
+    });
 
     await Duck.start({api_key:process.env.DUCK_DISCORD_KEY});
     await Timmy.start({api_key:process.env.TIMMY_DISCORD_KEY})
