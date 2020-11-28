@@ -24,6 +24,7 @@
 
 import DiscordService from './services/discord';
 import MongooseService from './services/mongoose';
+
 import express = require("express");
 
 import {DiscordMessage} from './models/DiscordMessage';
