@@ -46,6 +46,8 @@ import {DiscordMessage} from './models/DiscordMessage';
         res.send(all)
     })
 
+    app.listen(process.env.PORT || 8080)
+
     await Duck.start({api_key:process.env.DUCK_DISCORD_KEY});
     await Timmy.start({api_key:process.env.TIMMY_DISCORD_KEY})
 })()
