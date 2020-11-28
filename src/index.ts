@@ -15,15 +15,18 @@
 
 // let trainingInterval = INITIAL_TRAINING_INTERVAL;
 
-const howFast = (messages,frameStart) =>
-    math.mean(...messages.map((msg,i,a) =>
-        i > 0
-        ? msg.createdAt - a[i -1]
-        : msg.createdAt - frameStart));
+// const howFast = (messages,frameStart) =>
+//     math.mean(...messages.map((msg,i,a) =>
+//         i > 0
+//         ? msg.createdAt - a[i -1]
+//         : msg.createdAt - frameStart));
 
 
-import DiscordService from "./services/discord";
-import MongooseService from './services/mongoose'
+import DiscordService from './services/discord';
+import MongooseService from './services/mongoose';
+import express = require("express");
+
+import {DiscordMessage} from './models/DiscordMessage';
 
 (async () => {
 
@@ -32,9 +35,16 @@ import MongooseService from './services/mongoose'
     const Duck = new DiscordService()
     const Timmy = new DiscordService()
 
+    const app = express();
+
     MongooseService.start({
         url:process.env.MONGO_DB_URL
     });
+
+    app.get('/messages',async (req,res) => {
+        const all = await DiscordMessage.find({})
+        res.send(all)
+    })
 
     await Duck.start({api_key:process.env.DUCK_DISCORD_KEY});
     await Timmy.start({api_key:process.env.TIMMY_DISCORD_KEY})
