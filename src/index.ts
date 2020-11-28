@@ -15,7 +15,11 @@
 
 // let trainingInterval = INITIAL_TRAINING_INTERVAL;
 
-// let talkFrameStartTime = Date.now();
+const howFast = (messages,frameStart) =>
+    math.mean(...messages.map((msg,i,a) =>
+        i > 0
+        ? msg.createdAt - a[i -1]
+        : msg.createdAt - frameStart));
 
 
 import DiscordService from "./services/discord";
