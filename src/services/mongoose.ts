@@ -6,6 +6,10 @@ export default class MongooseService {
     }) {
 
         //'mongodb://localhost:27017/test',
-        mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
+        mongoose.connect(`mongodb://home.errorlog.xyz:27017/brain-base`, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
+            .then(console.log.bind(null,"db connected"))
     }
 }
