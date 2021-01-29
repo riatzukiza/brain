@@ -6,7 +6,7 @@ export default class MongooseService {
     }) {
 
         //'mongodb://localhost:27017/test',
-        mongoose.connect(`mongodb://home.errorlog.xyz:27017/brain-base`, {
+        mongoose.connect(process.env.MONGO_DB_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
