@@ -2,30 +2,16 @@ import * as Discord from 'discord.js'
 
 import {DiscordMessage} from '../models'
 
+interface startInput {
+    api_key:string
+}
 export default class DiscordService {
     public client : Discord.Client
     constructor() {
         this.client = new Discord.Client();
     }
-    start({api_key}) {
+    start({api_key}:startInput) {
         this.client.on('message', async (msg:Discord.Message) => {
-            let channel, guild, author, content;
-            if(msg.channel.type === 'text') {
-                channel = msg.channel.name
-            }
-            [guild,author,content] = [
-                msg.guild.name,
-                msg.author.username,
-                msg.content
-            ]
-
-            const messageRecord = new DiscordMessage({
-                channel,
-                guild,
-                author,
-                content
-            });
-            return messageRecord.save();
         });
 
 
