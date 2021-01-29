@@ -1,6 +1,6 @@
 # Brain
 
-Brain is a general artificial inteligence, currently not working. It will at first utilize an LSTM structure to learn from some text data to produce JSON strings.
+Brain is text bot, currently not working. It will at first utilize an LSTM structure to learn from some text data to produce JSON strings.
 
 The text data will be json arrays of objects of data taken from discord messages.
 
