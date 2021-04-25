@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-import { DiscordMessage } from './index'
+import * as DiscordMessage from './index'
 
 export const DiscordAuthor = mongoose.model('DiscordAuthor',{
     id       : { type: String, required: true },

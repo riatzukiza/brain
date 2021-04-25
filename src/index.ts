@@ -27,7 +27,9 @@ import MongooseService from './services/mongoose';
 
 import express = require("express");
 
-import {DiscordMessage} from './models/DiscordMessage';
+import * as DiscordMessage from './models/DiscordMessage';
+
+import * as lstm from "./lstm"
 
 (async () => {
 
@@ -43,7 +45,7 @@ import {DiscordMessage} from './models/DiscordMessage';
     });
 
     app.get('/messages',async (req,res) => {
-        const all = await DiscordMessage.find({})
+        const all = await DiscordMessage.Model.find({})
         res.send(all)
     })
 

@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 export const DiscordMessageSource = Schema({
     d_id       : { type: String, required: true },

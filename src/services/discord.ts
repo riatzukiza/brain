@@ -1,6 +1,6 @@
 import * as Discord from 'discord.js'
 
-import {DiscordMessage} from '../models'
+import * as DiscordMessage from '../models/DiscordMessage';
 
 interface startInput {
     api_key:string
